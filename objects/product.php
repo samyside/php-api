@@ -19,7 +19,7 @@ class Product {
 	}
 
 	// метод read() - получение товаров
-	function read() {
+	public function read() {
 		// выбираем все записи
 		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories c ON p.category_id = c.id ORDER BY p.created DESC"
 
@@ -32,7 +32,7 @@ class Product {
 	}
 	
 	// метод create() - создание новой записи
-	function create() {
+	public function create() {
 		// запрос для создания записи
 		$query = "INSERT INTO " . $this->table_name . "SET name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
 
@@ -61,7 +61,7 @@ class Product {
 	}
 
 	// используется при заполнении формы обновления товара
-	function readOne() {
+	public function readOne() {
 		// запрос для чтения одной записи (товара)
 		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM products as p LEFT JOIN categories as c ON p.category_id = c.id WHERE p.id = ? LIMIT";
 		// подготовка запроса
@@ -85,7 +85,7 @@ class Product {
 	}
 
 	// метод update() - изменение (обновление) товара
-	function update() {
+	public function update() {
 		// запрос для обновления записи (товара)
 		$query = "UPDATE " . $this->table_name . 
 			"SET 
@@ -122,7 +122,7 @@ class Product {
 	}
 
 	// метод delete() - удаление товара
-	function delete() {
+	public function delete() {
 		// запрос для удаления записи (товара)
 		$query = "DELETE FROM " . $this->table_name . "WHERE id = ?";
 
@@ -144,7 +144,7 @@ class Product {
 	}
 
 	// метод search() - поиск товаров
-	function search($keywords) {
+	public function search($keywords) {
 		// выборка по всем записям
 		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories as c ON p.category_id = c.id WHERE p.name LIKE ? OR p.description LIKE ? OR c.name LIKE ? ORDER BY p.created DESC";
 
@@ -165,6 +165,37 @@ class Product {
 
 		return $stmt;
 	}
+
+	// чтение товаров с пагинацией
+	public function readPaging($from_records_num, $records_per_page) {
+		// выборка товаров
+		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories AS c ON p.category_id = c.id ORDER BY p.created DESC LIMIT ?, ?";
+
+		// подготовка запроса
+		$stmt = $this->conn->prepare($query);
+
+		// связка значений переменных
+		$stmt->bindParam(1, $from_records_num, PDO::PARAM_INT);
+		$stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
+
+		// выполняем запрос
+		$stmt->execute();
+
+		// возвращаем значение из базы данных
+		return $stmt;
+	}
+
+	// используется для пагинации товаров
+	public function count() {
+		$query = "SELECT COUNT(*) AS total_rows FROM " . $this->table_name;
+
+		$stmt = $this->conn->prepare($query);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCHASSOC);
+
+		return $row['total_rows'];
+	}
+	
 }
 
 ?>
