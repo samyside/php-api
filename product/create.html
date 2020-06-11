@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create a new Product</title>
+</head>
+<body>
+	<style type="text/css">
+		input {
+		}
+	</style>
+<h1>Create new product</h1>
+<form>
+	<fieldset>
+		<legend>General info</legend>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>
+					<input type="text" id="id">
+						<button type="button" onclick="sendJSON()">
+							SendJSON
+						</button>
+				</td>
+				<td>Result: <p class="result"><b></b></p></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input type="text" id="name">
+				</td>
+			</tr>
+			<tr>
+				<td>Price</td>
+				<td>
+					<input type="text" id="price">
+				</td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td>
+					<input type="text" id="description">
+				</td>
+			</tr>
+			<tr>
+				<td>Category</td>
+				<td>
+					<br><input type="radio" id="category_id" value="1">Fashion
+					<br><input type="radio" id="category_id" value="2">Electronics
+					<br><input type="radio" id="category_id" value="3">Motors
+					<br><input type="radio" id="category_id" value="5">Movies
+					<br><input type="radio" id="category_id" value="6">Books
+					<br><input type="radio" id="category_id" value="13">Sports
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<style type="text/css">
+		h3 {
+			text-align: center;
+			color: green;
+		}
+		.result {
+			color: green;
+			text-align: center;
+		}
+	</style>
+</form>
+<script type="text/javascript" src="echo.js"></script>
+<script type="text/javascript" src="test-xhr.js"></script>
+</body>
+</html>

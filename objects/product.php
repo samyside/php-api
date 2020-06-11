@@ -21,10 +21,10 @@ class Product {
 	// метод read() - получение товаров
 	public function read() {
 		// выбираем все записи
-		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories c ON p.category_id = c.id ORDER BY p.created DESC"
+		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories c ON p.category_id = c.id ORDER BY p.created DESC";
 
 		// подготовка запроса
-		$stmt - $this->conn->prepare($query);
+		$stmt = $this->conn->prepare($query);
 
 		// выполняем запрос
 		$stmt->execute();
@@ -63,7 +63,7 @@ class Product {
 	// используется при заполнении формы обновления товара
 	public function readOne() {
 		// запрос для чтения одной записи (товара)
-		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM products as p LEFT JOIN categories as c ON p.category_id = c.id WHERE p.id = ? LIMIT";
+		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM products as p LEFT JOIN categories as c ON p.category_id = c.id WHERE p.id = ? LIMIT 0,1";
 		// подготовка запроса
 		$stmt = $this->conn->prepare($query);
 
@@ -136,7 +136,7 @@ class Product {
 		$stmt->bindParam(1, $this->id);
 
 		// выполняем запрос
-		if ($stmt->execute())
+		if ($stmt->execute()) {
 			return true;
 		} else {
 			return false;

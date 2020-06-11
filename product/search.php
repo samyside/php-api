@@ -49,7 +49,7 @@ if ($num > 0) {
 	http_response_code(200);
 
 	// покажем товары
-	echo json_encode($product_arr);
+	echo json_encode($products_arr);
 } else {
 	// код ответа - 404 Ничего не найдено
 	http_response_code(404);
