@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Product {
 	// Подключение к базе данных и таблице 'products'
 	private $conn;

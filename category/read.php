@@ -1,4 +1,4 @@
-<?php 
+<?php
 // необходимые HTTP-заголовки
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -50,4 +50,4 @@ if ($num > 0) {
 	echo json_encode(array("message" => "Категории не найдены."), JSON_UNESCAPED_UNICODE);
 }
 
-?> 
+?>

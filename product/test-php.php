@@ -1,5 +1,5 @@
-<?php 
-header("Content-Type: application/json"); 
+<?php
+header("Content-Type: application/json");
 
 // accept _GET method
 // $id = isset($_GET['id']) ? $_GET['id'] : die();

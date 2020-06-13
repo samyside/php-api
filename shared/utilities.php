@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Используется для пагинации выдачи товаров
  */
@@ -25,7 +25,7 @@ class Utilities {
 		$paging_arr['pages'] = array();
 		$page_count = 0;
 
-		for ($x=$initial_num; $x < $condition_limit_num; $x++) { 
+		for ($x=$initial_num; $x < $condition_limit_num; $x++) {
 			// убедимся, что $x > 0 и $x <= $total_pages
 			if (($x > 0) && ($x <= $total_pages)) {
 				$paging_arr['pages'][$page_count]["page"] = $x;
@@ -36,7 +36,7 @@ class Utilities {
 			}
 		}
 
-		// кнопка для последней страницы 
+		// кнопка для последней страницы
 		$paging_arr["last"] = $page < $total_pages ? "{$page_url}page={$total_pages" : "";
 
 		// возвращаем формат json

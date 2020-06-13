@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * 
+ *
  */
 class Category {
 	// соединение с БД и таблицей 'categories'

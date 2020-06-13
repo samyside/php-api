@@ -1,17 +1,17 @@
-<?php 
+<?php
 // Необходимые HTTP-заголовки
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; chrset=UTF-8");
 
-// Подключение базы данных и файл, содержащий объекты 
+// Подключение базы данных и файл, содержащий объекты
 include_once '../config/database.php';
 include_once '../objects/product.php';
 
-// Получаем соединение с базой данных 
+// Получаем соединение с базой данны
 $database = new Database();
 $db = $database->getConnection();
 
-// Инициализируем объект 
+// Инициализируем объект
 $product = new Product($db);
 
 // Чтение товаров будет здесь

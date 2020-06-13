@@ -20,7 +20,7 @@ function sendJSON() {
 
 	// converting JSON data to string
 	var data = JSON.stringify({
-/*			"name": name.value, 
+/*			"name": name.value,
 			"price": price.value,
 			"description": description.value,
 			"category_id": category_id.value*/

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // необходимые HTTP-заголовки
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -25,7 +25,7 @@ if (
 	!empty($data->name) &&
 	!empty($data->price) &&
 	!empty($data->description) &&
-	!empty($data->category_id) 
+	!empty($data->category_id)
 ) {
 	// устанавливаем значения св-в товара
 	$product->name = $data->name;
@@ -41,7 +41,7 @@ if (
 
 		// ответ пользователю успешный
 		echo json_encode(array("message" => "Товар был создан."), JSON_UNESCAPED_UNICODE);
-	} 
+	}
 	// если неудалось создать товар, выдаем сообщение
 	else {
 		// установлен код ответа - 503 Сервис Недоступен
