@@ -1,16 +1,18 @@
 function sendJSON() {
-	let result = document.querySelector('.result');
-	let id = document.querySelector('#id');
-	let name = document.querySelector('#name');
-	let price = document.querySelector('#price');
-	let description = document.querySelector('#description');
-	let category_id = document.querySelector('#category_id');
+	let resultId = document.querySelector('#result-id');
+	let resultName = document.querySelector('#result-name');
+	let resultPrice = document.querySelector('#result-price');
+	let resultDescription = document.querySelector('#result-description');
 
+	let inputId = document.querySelector('#input-id');
+	let inputName = document.querySelector('#input-name');
+	let inputPrice = document.querySelector('#input-price');
+	let inputDescription = document.querySelector('#input-description');
 
 	// creating XHR object
 	let xhr = new XMLHttpRequest(),
 		method = "POST",
-		url = "test-php.php";
+		url = "./read_by_id.php";
 
 	// open connection
 	xhr.open(method, url, true);
@@ -20,24 +22,23 @@ function sendJSON() {
 
 	// converting JSON data to string
 	var data = JSON.stringify({
-/*			"name": name.value,
-			"price": price.value,
-			"description": description.value,
-			"category_id": category_id.value*/
-			"id": id.value
+			"id": inputId.value,
+			"name": inputName.value,
+			"price": inputPrice.value,
+			"description": inputDescription.value
 		});
 	
 	// create a state change callback
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
-			// print received data from server
-			result.innerHTML = xhr.responseText;
+			// TODO get associative array
+			resultId.innerHTML = xhr.responseText;
+			console.log(xhr.responseText);
 		} else {
-			result.innerHTML = 'Bad request from server.';
+			resultId.innerHTML = 'Bad request from server.';
 		}
 	};
 	
 	// sending data with the request
 	xhr.send(data);
-	console.log(xhr.responseText);
 }

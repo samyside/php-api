@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut" href="/favicon.ico">
 	<title>Create a new Product</title>
 </head>
 <body>
@@ -16,30 +17,33 @@
 			<tr>
 				<td>ID</td>
 				<td>
-					<input type="text" id="id">
+					<input type="text" id="input-id" >
 						<button type="button" onclick="sendJSON()">
 							SendJSON
 						</button>
 				</td>
-				<td>Result: <p class="result"><b></b></p></td>
+				<td id="result-id"><b></b></td>
 			</tr>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input type="text" id="name">
+					<input type="text" id="input-name">
 				</td>
+				<td id="result-name"></td>
 			</tr>
 			<tr>
 				<td>Price</td>
 				<td>
-					<input type="text" id="price">
+					<input type="text" id="input-price">
 				</td>
+				<td id="result-price"></td>
 			</tr>
 			<tr>
 				<td>Description</td>
 				<td>
-					<input type="text" id="description">
+					<input type="text" id="input-description">
 				</td>
+				<td id="result-description"></td>
 			</tr>
 			<tr>
 				<td>Category</td>
@@ -51,6 +55,7 @@
 					<br><input type="radio" id="category_id" value="6">Books
 					<br><input type="radio" id="category_id" value="13">Sports
 				</td>
+				<td id="result-category"></td>
 			</tr>
 		</table>
 	</fieldset>

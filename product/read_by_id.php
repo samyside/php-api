@@ -1,8 +1,8 @@
-<?php 
+<?php
 // Необходимые HTTP-заголовки
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json");
 
@@ -19,7 +19,12 @@ $db = $database->getConnection();
 $product = new Product($db);
 
 // установим св-во ID записи для чтения
-$product->id = isset($_GET['id']) ? $_GET['id'] : die();
+// _GET method
+// $product->id = isset($_GET['id']) ? $_GET['id'] : die();
+
+// _POST method
+$data = json_decode(file_get_contents("php://input"));
+$product->id = $data->id;
 
 // прочитаем детали товара для редактирования
 $product->readOne();
@@ -30,9 +35,9 @@ if ($product->name != null) {
 		"id" => $product->id,
 		"name" => $product->name,
 		"description" => $product->description,
-		"price" => $product->price,
-		"category_id" => $product->category_id,
-		"category_name" => $product->category_name
+		"price" => $product->price
+		// "category_id" => $product->category_id,
+		// "category_name" => $product->category_name
 	);
 
 	// код ответа - 200 OK
@@ -40,6 +45,7 @@ if ($product->name != null) {
 
 	// вывод в формате json
 	echo json_encode($product_arr);
+	// echo "result: " . $product->name;
 } else {
 	// код ответа - 404 Не Найдено
 	http_response_code(404);
