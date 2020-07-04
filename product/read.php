@@ -17,10 +17,10 @@ $product = new Product($db);
 // Чтение товаров будет здесь
 // Запрашиваем товары
 $stmt = $product->read();
-$num = $stmt->rowCount();
 
 // Проверка, найдено ли больше 0 записей
-if ($num > 0) {
+
+if ($stmt->rowCount() > 0) {
 	// массив товаров
 	$products_arr = array();
 	$products_arr["records"] = array();
@@ -44,15 +44,13 @@ if ($num > 0) {
 
 		// устанавливаем код ответа - 200 OK
 		http_response_code(200);
-
-		// выводим данные о товаре в формате JSON
-		echo json_encode($products_arr);
 	}
 } else {
 	// установим код ответа - 404
 	http_response_code(404);
 
 	// соодщаем ползователю, что товары не найдены
-	echo json_encode(array("message" => "Товары не найдены."), JSON_UNESCAPED_UNICODE);
+	$products_arr = array("message" => "products not found!");
 }
+	echo json_encode($products_arr);
 ?>

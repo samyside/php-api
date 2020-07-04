@@ -32,7 +32,11 @@ function sendJSON() {
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			// TODO get associative array
-			resultId.innerHTML = xhr.responseText;
+			let newData = JSON.parse(xhr.responseText);
+			console.log(newData.name);
+			resultId.innerHTML = newData.id;
+			resultName.innerHTML = newData.name;
+			resultPrice.innerHTML = newData.price;
 			console.log(xhr.responseText);
 		} else {
 			resultId.innerHTML = 'Bad request from server.';
