@@ -4,7 +4,7 @@
  */
 class Database {
 
-	private $host = "localhost";
+	private $host = "127.0.0.1";
 	private $db_name = "api_db";
 	private $username = "root";
 	private $password = "root";
