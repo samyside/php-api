@@ -5,9 +5,6 @@ function sendJSON() {
 	let resultDescription = document.querySelector('#result-description');
 
 	let inputId = document.querySelector('#input-id');
-	let inputName = document.querySelector('#input-name');
-	let inputPrice = document.querySelector('#input-price');
-	let inputDescription = document.querySelector('#input-description');
 
 	// creating XHR object
 	let xhr = new XMLHttpRequest(),
@@ -22,10 +19,7 @@ function sendJSON() {
 
 	// converting JSON data to string
 	var data = JSON.stringify({
-			"id": inputId.value,
-			"name": inputName.value,
-			"price": inputPrice.value,
-			"description": inputDescription.value
+			"id": inputId.value
 		});
 	
 	// create a state change callback

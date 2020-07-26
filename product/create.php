@@ -35,7 +35,7 @@ if (
 	$product->created = date('Y-m-d H:i:s');
 
 	// создание товара
-	if ($product->created()) {
+	if ($product->create()) {
 		// установлен код ответа - 201 Создано
 		http_response_code(201);
 
