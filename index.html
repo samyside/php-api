@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Main page</title>
-	<script type="text/javascript" src="./assets/js/loader.js"></script>
-</head>
-<body>
-		<h1>Admin panel</h1>
+	<head>
+		<title>
+			Main page
+		</title>
+		<script src="./assets/js/loader.js" type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<h1>
+			Admin panel
+		</h1>
 		<div class="actions">
-	<fieldset>
-		<legend>Get by id</legend>
-		<form>
-			<div class="get-item">
-				<div class="manage-get-item-id">
-					<input type="text" name="id" id="input-id">
-					<button type="button" onclick="getItemById()">get</button>
-					<output id="report-operation-get-id">Await for action</output>
-				</div>
-				<div class="result-get-item">
-					<table border="1">
-						<p>result goes here</p>
-						<tr>
-							<td width="20%">id</td>
-							<td width="20%">name</td>
-							<td width="20%">description</td>
-							<td width="20%">price</td>
-						</tr>
-						<tr>
-							<td id="id-result-id"></td>
-							<td id="id-result-name"></td>
-							<td id="id-result-description"></td>
-							<td id="id-result-price"></td>
-						</tr>
-					</table>
-				</div>
-		</form>
-	</fieldset>
-			</div>
-			<div class="get-all-item">
-				
-			</div>
-			<div class="delete-item"></div>
+			<fieldset>
+				<legend>
+					Get by id
+				</legend>
+				<form>
+					<div class="get-item">
+						<div class="manage-get-item-id">
+							<input id="input-id" name="id" type="text">
+								<button onclick="getItemById()" type="button">
+									get
+								</button>
+								<output id="report-operation-get-id">
+									Await for action
+								</output>
+						</div>
+						<div class="result-get-item">
+							<table border="1">
+								<p>
+									result goes here
+								</p>
+								<tr>
+									<td width="20%">
+										id
+									</td>
+									<td width="20%">
+										name
+									</td>
+									<td width="20%">
+										description
+									</td>
+									<td width="20%">
+										price
+									</td>
+								</tr>
+								<tr>
+									<td id="id-result-id">
+									</td>
+									<td id="id-result-name">
+									</td>
+									<td id="id-result-description">
+									</td>
+									<td id="id-result-price">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</fieldset>
 		</div>
-</body>
+		<div class="get-item-by-name">
+			<fieldset>
+				<legend>Get goods by name</legend>
+				<form action="">
+					<input type="text">
+					<button type="button" onclick="getItemByName()">find</button>
+					<output id="report-get-by-name">Waiting for the action</output>
+				</form>
+			</fieldset>
+		</div>
+		<div class="get-all-item">
+		</div>
+		<div class="delete-item">
+		</div>
+	</body>
 </html>
