@@ -53,11 +53,9 @@ class Product {
 		$stmt->bindParam(":created", $this->created);
 
 		// выполняем запрос
-		if ($stmt->execute()) {
-			return true;
-		} else {
-			return false;
-		}
+		// в случае успеха возвращается true
+		// в случае ошибки возвращается false
+		return $stmt->execute();
 	}
 
 	// используется при заполнении формы обновления товара
