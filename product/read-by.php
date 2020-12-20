@@ -19,17 +19,23 @@ $db = $database->getConnection();
 $product = new Product($db);
 
 // установим св-во ID записи для чтения
-// _GET method
-$product->id = isset($_GET['id']) ? $_GET['id'] : die();
+if (isset($_GET['id'])) {
+	$product->getById($_GET['id']);
+} else if (isset($_GET['name'])) {
+	$product->getByName($_GET['name']);
+} else {
+	echo json_encode(array("message" => "Неверный параметр."), JSON_UNESCAPED_UNICODE);
+	die();
+}
 
 // _POST method
 // $data = json_decode(file_get_contents("php://input"));
 // $product->id = $data->id;
 
-// прочитаем детали товара для редактирования
-$product->readOne();
-
 if ($product->name != null) {
+	// код ответа - 200 OK
+	http_response_code(200);
+
 	// создание массива
 	$product_arr = array(
 		"id" => $product->id,
@@ -40,12 +46,8 @@ if ($product->name != null) {
 		// "category_name" => $product->category_name
 	);
 
-	// код ответа - 200 OK
-	http_response_code(200);
-
 	// вывод в формате json
 	echo json_encode($product_arr);
-	// echo "result: " . $product->name;
 } else {
 	// код ответа - 404 Не Найдено
 	http_response_code(404);
@@ -54,4 +56,4 @@ if ($product->name != null) {
 	echo json_encode(array("message" => "Товар не существует."), JSON_UNESCAPED_UNICODE);
 }
 
- ?>
+?>

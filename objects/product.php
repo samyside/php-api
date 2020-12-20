@@ -59,7 +59,8 @@ class Product {
 	}
 
 	// используется при заполнении формы обновления товара
-	public function readOne() {
+	public function getById($id) {
+		$this->id = $id;
 		// запрос для чтения одной записи (товара)
 		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM products as p LEFT JOIN categories as c ON p.category_id = c.id WHERE p.id = ? LIMIT 0,1";
 		// подготовка запроса
@@ -80,6 +81,29 @@ class Product {
 		$this->description = $row['description'];
 		$this->category_id = $row['category_id'];
 		$this->category_name = $row['category_name'];
+	}
+
+	public function getByName($name) {
+		$this->name = $name;
+		// sql-query Строка sql-зарпоса
+		$query = "SELECT p.id, p.name, p.price, p.description FROM products AS p WHERE p.name LIKE ?";
+
+		$stmt = $this->conn->prepare($query);
+
+		// привязываем id товара, который будет обновлен
+		$stmt->bindValue(1, '%'. $name .'%', PDO::PARAM_STR);
+
+		// выполняем запрос
+		$stmt->execute();
+
+		// получаем извлеченную строку
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Присвоение полученный данных полям объекта Product
+		$this->id = $row['id'];
+		$this->name = $row['name'];
+		$this->price = $row['price'];
+		$this->description = $row['description'];
 	}
 
 	// метод update() - изменение (обновление) товара
@@ -189,7 +213,7 @@ class Product {
 
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCHASSOC);
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		return $row['total_rows'];
 	}

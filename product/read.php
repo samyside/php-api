@@ -28,6 +28,9 @@ if ($stmt->rowCount() > 0) {
 	// получаем содержимое нашей таблицы
 	// fetch() быстрее, чем fetchAll()
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		// устанавливаем код ответа - 200 OK
+		http_response_code(200);
+
 		// извлекаем строку
 		extract($row);
 
@@ -41,9 +44,6 @@ if ($stmt->rowCount() > 0) {
 			"category_name" => $category_name
 		);
 		array_push($products_arr["records"], $product_item);
-
-		// устанавливаем код ответа - 200 OK
-		http_response_code(200);
 	}
 } else {
 	// установим код ответа - 404
@@ -52,5 +52,5 @@ if ($stmt->rowCount() > 0) {
 	// соодщаем ползователю, что товары не найдены
 	$products_arr = array("message" => "products not found!");
 }
-	echo json_encode($products_arr);
+	echo json_encode($products_arr['records']);
 ?>
