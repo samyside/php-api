@@ -1,5 +1,4 @@
 function getItemById() {
-	let searchId = document.querySelector('#searchId');
 	let reportOperation = document.querySelector('#report-operation-get-id');
 	let resultId = document.querySelector('#id-result-id');
 	let resultName = document.querySelector('#id-result-name');
@@ -8,10 +7,12 @@ function getItemById() {
 
 	let inputId = document.querySelector('#input-id');
 
-	// creating XHR object
+	// creating XHR and URL objects
+	let url = new URL('http://php-api/product/read-by-id.php');
+	url.searchParams.set('id', inputId.value);
 	let xhr = new XMLHttpRequest(),
 		method = "GET",
-		url = "./product/read-by-id.php?id=" + searchId;
+		url = "./product/read-by-id.php?id=" + inputId;
 
 	// open connection
 	xhr.open(method, url, true);
@@ -20,14 +21,13 @@ function getItemById() {
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	// converting JSON data to string
-	var data = JSON.stringify({
+	/*var data = JSON.stringify({
 			"id": inputId.value
-		});
+		});*/
 	
 	// create a state change callback
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
-			// TODO get associative array
 			let newData = JSON.parse(xhr.responseText);
 			console.log(newData.name);
 			resultId.innerHTML = newData.id;
@@ -44,5 +44,5 @@ function getItemById() {
 	};
 	
 	// sending data with the request
-	xhr.send(data);
+	xhr.send();
 }
