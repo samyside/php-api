@@ -1,5 +1,6 @@
 function getItemById() {
-	let reportOperation = document.querySelector('#report-operation-get-id')
+	let searchId = document.querySelector('#searchId');
+	let reportOperation = document.querySelector('#report-operation-get-id');
 	let resultId = document.querySelector('#id-result-id');
 	let resultName = document.querySelector('#id-result-name');
 	let resultPrice = document.querySelector('#id-result-price');
@@ -9,8 +10,8 @@ function getItemById() {
 
 	// creating XHR object
 	let xhr = new XMLHttpRequest(),
-		method = "POST",
-		url = "./product/read_by_id.php";
+		method = "GET",
+		url = "./product/read-by-id.php?id=" + searchId;
 
 	// open connection
 	xhr.open(method, url, true);
@@ -36,9 +37,9 @@ function getItemById() {
 			reportOperation.innerHTML = 'Success';
 		} else {
 			reportOperation.innerHTML = 'Error. Bad request from server';
-			resultId.innerHTML = "";
-			resultName.innerHTML = "";
-			resultPrice.innerHTML = "";
+			resultId.innerHTML = " ";
+			resultName.innerHTML = " ";
+			resultPrice.innerHTML = " ";
 		}
 	};
 	

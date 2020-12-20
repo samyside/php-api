@@ -9,7 +9,7 @@ function sendJSON() {
 	// creating XHR object
 	let xhr = new XMLHttpRequest(),
 		method = "POST",
-		url = "./read_by_id.php";
+		url = "./read-by-id.php";
 
 	// open connection
 	xhr.open(method, url, true);

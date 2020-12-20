@@ -20,11 +20,11 @@ $product = new Product($db);
 
 // установим св-во ID записи для чтения
 // _GET method
-// $product->id = isset($_GET['id']) ? $_GET['id'] : die();
+$product->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 // _POST method
-$data = json_decode(file_get_contents("php://input"));
-$product->id = $data->id;
+// $data = json_decode(file_get_contents("php://input"));
+// $product->id = $data->id;
 
 // прочитаем детали товара для редактирования
 $product->readOne();
