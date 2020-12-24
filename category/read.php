@@ -22,7 +22,6 @@ $num = $stmt->rowCount();
 if ($num > 0) {
 	// массив
 	$categories_arr = array();
-	$categories_arr["records"] = array();
 
 	// получим содержимое нашей таблицы
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -31,17 +30,17 @@ if ($num > 0) {
 
 		$category_item = array(
 			"id" => $id,
-			"name" => $name;
+			"name" => $name,
 			"description" => html_entity_decode($description)
 		);
 
-		array_push($categories_arr["records"], $category_item);
+		array_push($categories_arr, $category_item);
 	}
 	// код ответа - 200 OK
 	http_response_code(200);
 
 	// отдаем данные категорий в формате JSON
-	echo json_decode($categories_arr);
+	echo json_encode($categories_arr);
 } else {
 	// код ответа - 404 Ничего Не Найдено
 	http_response_code(404);
