@@ -1,4 +1,4 @@
-function getItemById() {
+function getById() {
 	let reportOperation = document.querySelector('#report-operation-get-id');
 	let resultId = document.querySelector('#id-result-id');
 	let resultName = document.querySelector('#id-result-name');
@@ -23,12 +23,19 @@ function getItemById() {
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			let data = JSON.parse(xhr.responseText);
-			console.log(data.name);
+
+			// data.forEach((current, index)=> {
+			// 	output +=  current + ' ';
+			// });
+
+			document.querySelector('#dynamic-result')
+				.insertAdjacentHTML('afterbegin', output);
+
 			resultId.innerHTML = data.id;
 			resultName.innerHTML = data.name;
 			resultDescription.innerHTML = data.description;
 			resultPrice.innerHTML = data.price;
-			console.log(xhr.responseText);
+
 			reportOperation.innerHTML = 'Success';
 		} else {
 			reportOperation.innerHTML = 'Error. Bad request from server';
@@ -40,4 +47,21 @@ function getItemById() {
 	
 	// sending data with the request
 	xhr.send();
+}
+
+async function getByName() {
+	// Входные данные
+	let input = document.querySelector('#inputName');
+
+	// Результирующие переменные
+	let resultName = document.querySelector('#result');
+
+	// Получение данных с сервера
+	let url = new URL('http://php-api/product/read-by.php');
+	url.searchParams.set('name', input.value);
+	const response = await fetch(url);
+	const result = await response.json();
+
+	// Вывод результата в HTML
+	resultName.innerHTML = result.id;
 }

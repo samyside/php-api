@@ -3,6 +3,7 @@
 <head>
 	<title>Main page</title>
 	<script type="text/javascript" src="./assets/js/loader.js"></script>
+	<meta charset="UTF-8">
 </head>
 <body>
 		<h1>Admin panel</h1>
@@ -13,7 +14,7 @@
 			<div class="get-item">
 				<div class="manage-get-item-id">
 					<input type="text" id="input-id">
-					<button type="button" onclick="getItemById()">get</button>
+					<button type="button" onclick="getById()">get</button>
 					<output id="report-operation-get-id">Await for action</output>
 				</div>
 				<div class="result-get-item">
@@ -45,11 +46,30 @@
 			<fieldset>
 				<legend>Get goods by name</legend>
 				<form action="">
-					<input type="text">
-					<button type="button" onclick="getItemByName()">find</button>
+					<input type="text" id="inputName">
+					<button type="button" onclick="getByName()">find</button>
 					<output id="report-get-by-name">Waiting for the action</output>
 				</form>
+				<table border="1">
+					<tr>
+						<td>id</td>
+						<td>name</td>
+						<td>price</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<p id="result"></p>
 			</fieldset>
+			<div id="dynamic-result"></div>
 		</div>
 		<div class="get-all-item">
 		</div>
