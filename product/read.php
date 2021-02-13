@@ -23,7 +23,6 @@ $stmt = $product->read();
 if ($stmt->rowCount() > 0) {
 	// массив товаров
 	$products_arr = array();
-	$products_arr["records"] = array();
 
 	// получаем содержимое нашей таблицы
 	// fetch() быстрее, чем fetchAll()
@@ -43,7 +42,7 @@ if ($stmt->rowCount() > 0) {
 			"category_id" => $category_id,
 			"category_name" => $category_name
 		);
-		array_push($products_arr["records"], $product_item);
+		array_push($products_arr, $product_item);
 	}
 } else {
 	// установим код ответа - 404
@@ -52,5 +51,5 @@ if ($stmt->rowCount() > 0) {
 	// соодщаем ползователю, что товары не найдены
 	$products_arr = array("message" => "products not found!");
 }
-	echo json_encode($products_arr['records']);
+	echo json_encode($products_arr);
 ?>

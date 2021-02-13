@@ -18,7 +18,7 @@ class Product {
 		$this->conn = $db;
 	}
 
-	// метод read() - получение товаров
+	// Получение всех товаров
 	public function read() {
 		// выбираем все записи
 		$query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created FROM " . $this->table_name . " p LEFT JOIN categories c ON p.category_id = c.id ORDER BY p.created DESC";
@@ -84,6 +84,7 @@ class Product {
 	}
 
 	public function getByName($name) {
+		$products = array();
 		$this->name = $name;
 		// sql-query Строка sql-зарпоса
 		$query = "SELECT p.id, p.name, p.price, p.description FROM products AS p WHERE p.name LIKE ?";
@@ -97,13 +98,27 @@ class Product {
 		$stmt->execute();
 
 		// получаем извлеченную строку
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			// Извлекаем из строки таблицы, полученной из БД
+			// extract($row);
 
-		// Присвоение полученный данных полям объекта Product
-		$this->id = $row['id'];
-		$this->name = $row['name'];
-		$this->price = $row['price'];
-		$this->description = $row['description'];
+			$product = array(
+				"id" => $row['id'],
+				"name" => $row['name'],
+				"description" => $row['description'],
+				"price" => $row['price'],
+				"category" => $row['category']
+			);
+
+			array_push($products, $product);
+
+			// Присвоение полученный данных полям объекта Product
+			// $this->id = $row['id'];
+			// $this->name = $row['name'];
+			// $this->price = $row['price'];
+			// $this->description = $row['description'];
+			
+		}
 	}
 
 	// метод update() - изменение (обновление) товара
